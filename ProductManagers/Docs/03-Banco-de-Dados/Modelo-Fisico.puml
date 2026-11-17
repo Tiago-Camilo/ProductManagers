@@ -1,0 +1,18 @@
+﻿@startuml
+
+hide circle
+skinparam linetype ortho
+
+entity "Products" {
+    * Id : INTEGER <<PK>>
+    --
+    Name : VARCHAR(150) <<NOT NULL>>
+    Description : VARCHAR(500)
+    SKU : VARCHAR(50) <<NOT NULL, UNIQUE>>
+    CostPrice : DECIMAL(12,2) <<NOT NULL>>
+    SalePrice : DECIMAL(12,2) <<NOT NULL>>
+    Quantity : INTEGER <<NOT NULL>>
+    CreatedAt : TIMESTAMP <<NOT NULL>>
+}
+
+@enduml

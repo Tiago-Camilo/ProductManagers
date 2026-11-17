@@ -1,0 +1,191 @@
+﻿@{
+    ViewData["Title"] = "Início";
+}
+
+<div class="home-container">
+
+    <!-- Apresentação -->
+    <section class="welcome-section">
+
+        <div class="welcome-content">
+
+            <span class="welcome-label">PRODUCT MANAGER</span>
+
+            <h1>
+                Gerencie seus produtos
+                <span>de forma simples.</span>
+            </h1>
+
+            <p>
+                Organize seu catálogo, acompanhe seus preços
+                e mantenha seus produtos sempre atualizados
+                em um único lugar.
+            </p>
+
+            <div class="welcome-actions">
+
+                <a asp-controller="Products"
+                   asp-action="Index"
+                   class="btn-home-primary">
+                    Consultar produtos
+                    <span>→</span>
+                </a>
+
+                <a asp-controller="Products"
+                   asp-action="Create"
+                   class="btn-home-secondary">
+                    + Novo produto
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="welcome-decoration">
+            <div class="decoration-card">
+
+                <div class="decoration-icon">PM</div>
+
+                <span class="decoration-title">
+                    ProductManager
+                </span>
+
+                <span class="decoration-subtitle">
+                    Gestão inteligente de produtos
+                </span>
+
+                <div class="decoration-line"></div>
+
+                <div class="decoration-footer">
+                    <span>Organização</span>
+                    <strong>Eficiência</strong>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Acesso rápido -->
+    <section class="home-section">
+
+        <div class="section-heading">
+            <div>
+                <h2>Acesso rápido</h2>
+                <p>Escolha o que deseja fazer.</p>
+            </div>
+        </div>
+
+        <div class="quick-access-grid">
+
+            <a asp-controller="Products"
+               asp-action="Index"
+               class="quick-card">
+
+                <div class="quick-icon blue">
+                    <span>01</span>
+                </div>
+
+                <div>
+                    <h3>Produtos</h3>
+                    <p>Consulte e gerencie seus produtos cadastrados.</p>
+                </div>
+
+                <span class="quick-arrow">→</span>
+
+            </a>
+
+            <a asp-controller="Products"
+               asp-action="Create"
+               class="quick-card">
+
+                <div class="quick-icon green">
+                    <span>02</span>
+                </div>
+
+                <div>
+                    <h3>Novo cadastro</h3>
+                    <p>Adicione um novo produto ao seu catálogo.</p>
+                </div>
+
+                <span class="quick-arrow">→</span>
+
+            </a>
+
+            <a asp-controller="Products"
+               asp-action="Index"
+               class="quick-card">
+
+                <div class="quick-icon purple">
+                    <span>03</span>
+                </div>
+
+                <div>
+                    <h3>Pesquisar</h3>
+                    <p>Encontre produtos pelo nome ou código SKU.</p>
+                </div>
+
+                <span class="quick-arrow">→</span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Recursos -->
+    <section class="home-section">
+
+        <div class="section-heading">
+            <div>
+                <h2>Recursos do sistema</h2>
+                <p>Funcionalidades disponíveis no ProductManager.</p>
+            </div>
+        </div>
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <span class="feature-number">01</span>
+                <h3>Cadastro organizado</h3>
+                <p>
+                    Centralize informações, códigos SKU,
+                    preços e quantidades dos produtos.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-number">02</span>
+                <h3>Controle de informações</h3>
+                <p>
+                    Atualize dados dos produtos e mantenha
+                    seu catálogo organizado.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-number">03</span>
+                <h3>Pesquisa simplificada</h3>
+                <p>
+                    Localize rapidamente seus produtos
+                    utilizando nome ou código SKU.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Rodapé interno -->
+    <section class="home-footer">
+
+        <div>
+            <strong>ProductManager</strong>
+            <span>Organização e praticidade para sua gestão.</span>
+        </div>
+
+        <span class="footer-version">Sistema de gerenciamento de produtos</span>
+
+    </section>
+
+</div>

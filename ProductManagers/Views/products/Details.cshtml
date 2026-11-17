@@ -1,0 +1,74 @@
+﻿@model ProductManager.Models.Product
+
+@{
+    ViewData["Title"] = "Detalhes do Produto";
+}
+
+<div class="container mt-4">
+
+    <div class="mb-4">
+        <h2 class="fw-bold">Detalhes do Produto</h2>
+        <p class="text-muted">Visualize as informações cadastradas.</p>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+
+            <dl class="row">
+
+                <dt class="col-sm-3">Código</dt>
+                <dd class="col-sm-9">@Model.Id</dd>
+
+                <dt class="col-sm-3">Nome</dt>
+                <dd class="col-sm-9">@Model.Name</dd>
+
+                <dt class="col-sm-3">SKU</dt>
+                <dd class="col-sm-9">@Model.SKU</dd>
+
+                <dt class="col-sm-3">Descrição</dt>
+                <dd class="col-sm-9">
+                    @(string.IsNullOrWhiteSpace(Model.Description)
+                        ? "Sem descrição"
+                        : Model.Description)
+                </dd>
+
+                <dt class="col-sm-3">Preço de custo</dt>
+                <dd class="col-sm-9">
+                    @Model.CostPrice.ToString("C2", new System.Globalization.CultureInfo("pt-BR"))
+                </dd>
+
+                <dt class="col-sm-3">Preço de venda</dt>
+                <dd class="col-sm-9">
+                    @Model.SalePrice.ToString("C2", new System.Globalization.CultureInfo("pt-BR"))
+                </dd>
+
+                <dt class="col-sm-3">Quantidade</dt>
+                <dd class="col-sm-9">@Model.Quantity</dd>
+
+                <dt class="col-sm-3">Data de cadastro</dt>
+                <dd class="col-sm-9">
+                    @Model.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")
+                </dd>
+
+            </dl>
+
+            <hr />
+
+            <div class="d-flex justify-content-end gap-2">
+
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    Voltar
+                </a>
+
+                <a asp-action="Edit"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-primary">
+                    Editar Produto
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,150 @@
+﻿@model ProductManager.ViewModels.Products.ProductListViewModel
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold">Produtos</h2>
+            <p class="text-muted">Gerencie os produtos cadastrados.</p>
+        </div>
+
+        <a asp-action="Create" class="btn btn-primary">
+            + Novo Produto
+        </a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+
+            <form asp-action="Index" method="get" class="row g-2">
+
+                <div class="col-md-10">
+                    <input asp-for="Search"
+                           class="form-control"
+                           placeholder="Pesquisar por nome ou SKU..." />
+                </div>
+
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-dark">
+                        Pesquisar
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Produto</th>
+                            <th>SKU</th>
+                            <th>Preço de custo</th>
+                            <th>Preço de venda</th>
+                            <th>Quantidade</th>
+                            <th class="text-end">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @if (Model.Products.Any())
+                        {
+                            @foreach (var product in Model.Products)
+                            {
+                                <tr>
+                                    <td>@product.Id</td>
+
+                                    <td>
+                                        <strong>@product.Name</strong>
+                                    </td>
+
+                                    <td>@product.SKU</td>
+
+                                    <td>
+                                        @product.CostPrice.ToString("C2", new System.Globalization.CultureInfo("pt-BR"))
+                                    </td>
+
+                                    <td>
+                                        @product.SalePrice.ToString("C2", new System.Globalization.CultureInfo("pt-BR"))
+                                    </td>
+
+                                    <td>@product.Quantity</td>
+
+                                    <td class="text-end">
+
+                                        <a asp-action="Details"
+                                           asp-route-id="@product.Id"
+                                           class="btn btn-sm btn-outline-secondary">
+                                            Detalhes
+                                        </a>
+
+                                        <a asp-action="Edit"
+                                           asp-route-id="@product.Id"
+                                           class="btn btn-sm btn-outline-primary">
+                                            Editar
+                                        </a>
+
+                                        <a asp-action="Delete"
+                                           asp-route-id="@product.Id"
+                                           class="btn btn-sm btn-outline-danger">
+                                            Excluir
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center py-4 text-muted">
+                                    Nenhum produto encontrado.
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="text-muted small">
+                Total de produtos: @Model.Products.Count
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

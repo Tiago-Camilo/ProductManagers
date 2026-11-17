@@ -1,0 +1,24 @@
+﻿@startuml
+top to bottom direction
+
+actor Comerciante
+
+rectangle "ProductManager - ASP.NET Core MVC" {
+
+    component "Views\n(Razor)" as Views
+    component "ProductsController" as Controller
+    component "IProductService" as Interface
+    component "ProductService" as Service
+    component "AppDbContext\n(Entity Framework Core)" as Context
+    database "PostgreSQL" as Database
+
+    Views --> Controller : Requisições HTTP
+    Controller --> Interface : Operações
+    Interface --> Service : Implementação
+    Service --> Context : Consultas e alterações
+    Context --> Database : SQL
+}
+
+Comerciante --> Views : Interação
+
+@enduml

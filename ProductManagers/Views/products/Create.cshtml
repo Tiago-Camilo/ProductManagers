@@ -1,0 +1,98 @@
+﻿@model ProductManager.ViewModels.Products.ProductCreateViewModel
+
+@{
+    ViewData["Title"] = "Cadastrar Produto";
+}
+
+<div class="container mt-4">
+
+    <div class="mb-4">
+        <h2 class="fw-bold">Cadastrar Produto</h2>
+        <p class="text-muted">Preencha os dados para cadastrar um novo produto.</p>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+
+            <form asp-action="Create" method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="alert alert-danger"></div>
+
+                <div class="row">
+
+                    <div class="col-md-8 mb-3">
+                        <label asp-for="Name" class="form-label">Nome do produto</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="SKU" class="form-label">SKU</label>
+                        <input asp-for="SKU" class="form-control" />
+                        <span asp-validation-for="SKU" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label asp-for="Description" class="form-label">Descrição</label>
+                        <textarea asp-for="Description"
+                                  class="form-control"
+                                  rows="3"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="CostPrice" class="form-label">Preço de custo</label>
+                        <input asp-for="CostPrice"
+                               type="number"
+                               step="0.01"
+                               min="0"
+                               class="form-control" />
+                        <span asp-validation-for="CostPrice" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="SalePrice" class="form-label">Preço de venda</label>
+                        <input asp-for="SalePrice"
+                               type="number"
+                               step="0.01"
+                               min="0.01"
+                               class="form-control" />
+                        <span asp-validation-for="SalePrice" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="Quantity" class="form-label">Quantidade</label>
+                        <input asp-for="Quantity"
+                               type="number"
+                               min="0"
+                               class="form-control" />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        Cancelar
+                    </a>
+
+                    <button type="submit" class="btn btn-primary">
+                        Cadastrar Produto
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,18 @@
+﻿@startuml
+
+hide circle
+skinparam linetype ortho
+
+entity "Produto" as Produto {
+    * Identificador
+    --
+    Nome
+    Descrição
+    SKU
+    Preço de Custo
+    Preço de Venda
+    Quantidade
+    Data de Cadastro
+}
+
+@enduml

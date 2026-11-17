@@ -1,0 +1,35 @@
+﻿@startuml
+left to right direction
+
+actor "Comerciante" as Usuario
+
+rectangle "ProductManager" {
+
+    usecase "Listar produtos" as UC01
+    usecase "Cadastrar produto" as UC02
+    usecase "Consultar produto" as UC03
+    usecase "Editar produto" as UC04
+    usecase "Excluir produto" as UC05
+    usecase "Pesquisar produtos" as UC06
+
+    usecase "Validar dados" as UC07
+    usecase "Verificar SKU" as UC08
+    usecase "Confirmar exclusão" as UC09
+}
+
+Usuario --> UC01
+Usuario --> UC02
+Usuario --> UC03
+Usuario --> UC04
+Usuario --> UC05
+Usuario --> UC06
+
+UC02 ..> UC07 : <<include>>
+UC02 ..> UC08 : <<include>>
+
+UC04 ..> UC07 : <<include>>
+UC04 ..> UC08 : <<include>>
+
+UC05 ..> UC09 : <<include>>
+
+@enduml
