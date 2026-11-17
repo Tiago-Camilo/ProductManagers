@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ProductManager.Data;
 using ProductManager.Services;
 using ProductManager.Services.Interfaces;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -15,6 +16,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor |
+        ForwardedHeaders.XForwardedProto,
+
+    KnownNetworks = { },
+    KnownProxies = { }
+});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
