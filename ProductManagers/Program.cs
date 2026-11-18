@@ -16,10 +16,16 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection");
 
+var connectionBuilder = new Npgsql.NpgsqlConnectionStringBuilder(
+    connectionString
+);
+
 Console.WriteLine("========== DATABASE DEBUG ==========");
-Console.WriteLine($"ConnectionString existe: {!string.IsNullOrWhiteSpace(connectionString)}");
-Console.WriteLine($"Host configurado: {Environment.GetEnvironmentVariable("PGHOST")}");
-Console.WriteLine($"DefaultConnection configurada: {builder.Configuration.GetConnectionString("DefaultConnection") != null}");
+Console.WriteLine($"ConnectionString existe: {connectionString != null}");
+Console.WriteLine($"Host recebido pelo Npgsql: {connectionBuilder.Host}");
+Console.WriteLine($"Port recebido pelo Npgsql: {connectionBuilder.Port}");
+Console.WriteLine($"Database: {connectionBuilder.Database}");
+Console.WriteLine($"Username: {connectionBuilder.Username}");
 Console.WriteLine("====================================");
 
 builder.Services.AddScoped<IProductService, ProductService>();
