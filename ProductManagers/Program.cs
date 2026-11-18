@@ -7,11 +7,20 @@ using Microsoft.AspNetCore.HttpOverrides;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    )
-);
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseNpgsql(
+            builder.Configuration.GetConnectionString("DefaultConnection")
+        )
+    );
+
+var connectionString = builder.Configuration
+    .GetConnectionString("DefaultConnection");
+
+Console.WriteLine("========== DATABASE DEBUG ==========");
+Console.WriteLine($"ConnectionString existe: {!string.IsNullOrWhiteSpace(connectionString)}");
+Console.WriteLine($"Host configurado: {Environment.GetEnvironmentVariable("PGHOST")}");
+Console.WriteLine($"DefaultConnection configurada: {builder.Configuration.GetConnectionString("DefaultConnection") != null}");
+Console.WriteLine("====================================");
 
 builder.Services.AddScoped<IProductService, ProductService>();
 
