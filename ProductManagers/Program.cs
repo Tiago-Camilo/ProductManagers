@@ -16,14 +16,13 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection");
 
-var connectionBuilder = new Npgsql.NpgsqlConnectionStringBuilder(
-    connectionString
-);
-
 Console.WriteLine("========== DATABASE DEBUG ==========");
-Console.WriteLine($"ConnectionString existe: {connectionString != null}");
-Console.WriteLine($"Host recebido pelo Npgsql: {connectionBuilder.Host}");
-Console.WriteLine($"Port recebido pelo Npgsql: {connectionBuilder.Port}");
+Console.WriteLine($"Contém referência não resolvida: {connectionString?.Contains("${{") ?? false}");
+
+var connectionBuilder =
+    new Npgsql.NpgsqlConnectionStringBuilder(connectionString);
+
+Console.WriteLine($"Host: {connectionBuilder.Host}");
 Console.WriteLine($"Database: {connectionBuilder.Database}");
 Console.WriteLine($"Username: {connectionBuilder.Username}");
 Console.WriteLine("====================================");
